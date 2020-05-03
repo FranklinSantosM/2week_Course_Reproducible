@@ -81,4 +81,27 @@ Here is an example of code in a blockquote:
 >     2+2
 >     mean(c(1,2,3,4,5))
 
+## Insert Tables
+```{r}
+knitr::kable(head(cars),
+             caption = "Top 6 Rows of cars Dataset")
+```
+
+## Insert an equation
+Revisar matematical xpresion o **ShareLatex** para explorar mas para las ecuaciones 
+
+$$ Y = \beta_o + \beta_1x $$
+
+
+
+
+
+
+
+
+
+
+
+
+
 
