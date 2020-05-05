@@ -1,0 +1,196 @@
+So you've already downloaded
+the bookdown project and you have it in your RepTemplate's folder. So go ahead and start RStudio and click Open Project and the select the
+bookdown demo R project in that directory. Notice that when you open this project, in the upper right window there's
+now a new tab that says Build. This tab is used to build the final book. However, there's no Git tab. This is because we need to
+re-establish a link using Git, back to your GitHub account. To do this, you may want to refer to
+Jenny Bryan's, Happy Git and GitHub for the user book. Chapter 18 has the information on how
+to connect to GitHub when you have an existing project in your
+connecting to GitHub last. So in RStudio, we need to set some things
+up on this end in order for Git to work. Go to Tools, Project Options, and
+click on the tab that says Git/SVN. You'll notice when we first do this, it currently says Version
+control system is None. However, we want to switch this to Git. It's going to ask you, Do you want to
+initialize a new git repository for this project? Click Yes. It's also going to prompt you that you
+need to restart RStudio in order for the change to take effect. Click Yes to do so now. Now, that we've applied Git
+version control to this project, at the top right there is
+now a tab that says Git. But we're still not done, we need to
+establish a connection between your local repository, which is the directory with
+all your files and RStudio project for the bookdown demo and
+your GitHub cloud account. But before we connect to the cloud, you
+need a repository in your GitHub account. So go ahead and log into your GitHub
+account and let's make a new repository. And we want to name
+the repository the same name as the RStudio project
+which is bookdown-demo. Go ahead and type in a description,
+Bookdown Demo Project. This is similar to other
+repositories you've created so far. However, for this one we are not
+going to initialize with the README. So skip that box and go and
+click Create repository. You'll notice when the repository is
+created, there's no files in it yet. We need to go ahead and connect using Git. So open your Git Bash window,
+go ahead and change the directory for the RepTemplate bookdown-demo-master. We can go ahead and
+stage and commit our files. So we're going to type in git add followed
+by a period to stage all of the files and then we're going to add
+a commit statement. git commit -m add files for bookdown demo, and click Enter. But before we can push all
+of these up to the cloud, we need to connect this
+directory to your cloud account. To do this we're going to go back to the
+GitHub repository that you just created, and we need to click the button for
+Copy to Clipboard for the URL. Now, go back to Git Bash and we're
+going to type in the following command. git remote add origin
+followed by the long URL you just typed in, so
+paste that in and click Enter. Hopefully, you won't get any errors. You'll notice that the command we
+just typed in is explained here in Jenny Bryan's book in section
+18.5 on connecting to GitHub. That was the first
+command we just typed in. To push it,
+we need to use the git push command but this time we need to add the following,
+-u origin master. Let's type that in now here
+in the Git Bash window. git push -u origin master,
+and click Enter. This will take a minute to run. When you're finished,
+type in git status, and it should say, there's nothing to commit and
+your working tree is clean. Then let's go back to your GitHub
+repository and click Refresh. You should now see all of the same
+files in your GitHub repository that you have on your local drive for
+the bookdown-demo-master. So now that you have the basic files and everything backed up to your GitHub
+account and everything synced up, let's start then and take a look at
+the files and see how everything works. So go back to RStudio and
+let's double check the Git connection. Click on Tools, Project Options,
+click on Git/SVN, and you should now see that in addition to the option being
+selected of Git for the version control system where it says Origin, you should
+have the URL for your GitHub account. That means you are now connected. So let's take a look at some of the files
+in your bookdown demo directory. The first one that you see
+listed here is the .gitignore. The gitignore file specifies intentionally
+untracked files that Git should ignore. If you want to learn more about this,
+consult the Git documentation. RStudio also created a .rhistory
+file that's empty at the moment and that's okay. Let's also take a quick look
+at the bookdown-dash.Rproj. This file when you click on it actually
+opens the project options that we've seen before if you click on Tool Project
+options, this is the same window. The key elements to notice in the window
+are the settings in the Git/SVN tab, which you've already seen, shows that yes, you're using Version Control and the URL
+of your GitHub repository is now listed. Also see the settings under Build Tools. Here you see that the Project Build Tools
+should show the Website as the option and then we're going to keep
+all of the other default settings for project root for the site directory, all
+the formats for the book output formats, and there's also a box here checked for
+Preview book after building, and Re-knit current preview
+when supporting files change. Basically keep all of the defaults and
+click OK. Additionally, you'll notice there
+are three files that end in .yml. These are YAML files. It turns out YAML header information can
+be kept in separate files instead of at the top of the R Markdown file,
+which is what has been done here. The travis.yml, or YAML file,
+provides some settings if you choose to set up what is called Travis CI,
+which stands for continuous integration. You can learn more about Travis CI
+at this website shown here. Continuous integration is beyond
+the scope of this course, but it may be worthwhile learning more if
+you plan to write computer programs and scripts for data analysis. Let's next take a look at the bookdown.yml
+or YAML file for our bookdown. This file contains information about
+the book, like the file name and the chapter names. Finally there's also a YAML file for
+the output. This file has various options for compiling the book in multiple formats
+like GitBook which is in HTML format, PDF book, and even an EPUB for
+electronic publishing book format. There are additionally two
+files here that end in .sh, these are shell script commands and
+we're going to ignore these for right now. There are also two files shown down here
+at the bottom, style.css and toc.css. These are cascading style sheets and
+they contain codes for formatting the resulting HTML format for
+the book. We're not going to change these right now. There is also a description file and
+a licence file. We're going to ignore these for now but
+feel free to take a look at them and learn more about them
+in the bookdown book. You may want to update
+the license file in the future if you plan on distributing your book
+online under a different license. There's also a README.md file
+which you can edit later. There is also a file called preamble.tex. This has some important formatting and
+setup information for compiling the book to
+PDF format using LaTeX. We're going to ignore this for right now. The remaining seven files
+are all R Markdown RMD files. There is an introductory chapter,
+defined by index.rmd, let's go ahead and open this file. At the beginning of the index.rmd file,
+there's another YAML header. Go ahead and
+change the author name to your name. Notice the YAML keyword for bibliography. This line sets up the references used or created when the book is compiled or
+rendered. There's actually two more files listed
+here in your file directory for book.bib and packages.bib. book.bib contains information for a reference that we already
+have the information for. If you'll notice packages.bib does not yet
+exist. This is created when the book is built. Both of these files are BibTeX
+formatted files and you can learn more about
+that at bibtex.org. After the introductory chapter,
+there are six more RMD files, each one's named with a number and
+a short description. Take a few minutes and open each one of
+these and take a look at the content. You'll notice at the top of each one
+of these there is no YAML header. Each RMD files starts with the level one
+header indicated by a single hashtag. So you've now had a chance to see all of
+the files that are contain here in this bookdown demo. Let's try building the whole book. Go to the Build tab, and you'll notice at the top there's
+a pull down menu here for Build Book. If you pull that down, we could
+try to format this to all formats. However, if you don't
+have LaTeX installed, you will get errors because
+you can't build the PDF book. So for now, let's click on the option
+that says, bookdowngitbook. You may be prompted to install
+a package as needed, if so, say Yes. Go ahead and click bookdowngitbook. If all goes well,
+your book will appear in a Viewer window. Let's open a File Explorer
+window to see your new files. So here in the File Explorer window
+you'll notice a couple of things. First of all, packages.bib was created. This file now has the BibTeX for
+all of the citations used for each R package that was
+used to build this book. There is also two new folders. The folder that starts with _book
+is the directory that has all of the HTML viewing files. If you go to this folder and
+double-click on index.html, this will open the book
+in a browser window. Once the book loads in your
+browser window, take a moment and explore what is listed here. You'll notice there's a couple
+ofthings you can click to page through the different pages. There is also a table of contents that
+shows up on the left and you can click and go to different sections in the book. At the top there are a couple of different
+options, one of which is you can actually change the style of the book,
+and you can change the font or you can change the color, for instance,
+we could change it from white to sepia. And there's a few more options
+here that can be customized later. The other directory that was created
+is one entitled _bookdown_files. This folder has a few more subfolders and
+has the image that was produced by one of the R code chunks that
+made a plot in the book. Let's go back to RStudio. If you have LaTeX installed,
+try making a PDF copy of the book. Click on Build, click the down arrow for
+build book and select bookdownpdf_book. This will take a minute to run. When the PDF of the book finishes
+compiling, there's going to be a new file in the _book directory
+called bookdown-demo.pdf. Let's go ahead an open it so
+you can take a look at it. The nice thing about the PDF format of
+the compiled book is that it starts with the table of contents and each
+chapter begins on its own separate page. You'll also notice for chapters that
+are longer than a single page you also get header and page number information. And then at the very end we get a list of
+the different references that were created during the making of the book,
+listed on the last page for Bibliography. Let's make one more change. Let's open the bookdown.yml,
+YAML file, and after the chapter_name we're going to add a line
+with an option for the output directory. Type in output_dir followed by a colon, and the word docs, click Save. Let's go back to the Build tab,
+click on Build Book for bookdowngitbook to rebuild
+the book into an HTML format. This time however, instead of all
+of the HTML files being placed in the directory_book, a new docs
+directory is going to be created and all the HTML and supporting
+files are going to be put there. So there is a reason we
+created the docs directory. I'll show you why we want
+to save these HTML files in the Docs directory in just a minute. So let's go ahead and
+back up all of your changes and sync everything up to
+your GitHub repository. Open your Git Bash window, make sure
+that you are in the directory for your bookdown-demo-master, and
+once you're in that directory, let's type in the same four commands
+that we've been doing previously. Type in git add to stage all of
+your files, type git commit -m and we'll say add files for bookdown demo and the updates that we just made and
+we'll click Enter. Now, we should be able to just type
+git push without anything additional. We can also double check and
+type git status and we have nothing to commit and
+our working tree is clean. So open your browser and
+go to your bookdown demo repository. Check to make sure all your changes were
+pushed to your GitHub cloud repository. You'll notice at the top
+of your repository, there is an icon that looks
+like a gear for settings. Go ahead and click on this icon. This sets up the settings for
+your repository. We're going to scroll about halfway
+down and there's a section here for GitHub Pages. These are designed to host information or
+project pages from a GitHub repository. We're going to set this up to
+create a webpage for your book. Click on the button for
+Source and change it from None to master branch /docs folder,
+click Save. The page is going to refresh and
+we need to scroll back down. You'll notice now there is
+a URL listed saying that your site is ready to be published. And it should look something like this,
+where it has your username .github.io followed by a slash and the title of
+this repository, which is bookdown-demo. Go ahead and click on this URL and
+you should see your book online. Congratulations, you've now created
+a book and served it online. Plus, everything is now
+connected using Git from your local drive in
+your GitHub cloud account. And we're now setup to publish
+it to your Docs directory. That way,
+anytime you make changes to the book and sync the files using Git,
+your online book will be updated also. Take time now and make some changes to
+the different RMD files for each chapter. Add some text, insert some R code,
+maybe adding a plot, an image. Then recompile the book, resync the files,
+and view your changes online. We've barely scratched the surface on
+creating a book using the bookdown package. I really encourage you to learn more
+because a book is a wonderful way to organize multiple
+related documents together into one nice neat package even if your
+intention is not to write a book but simply to organize
+a multi-component report.
